@@ -6,7 +6,7 @@ var appDir = path.dirname(require.main.filename);
 var readXlsxFile = require('read-excel-file/node');
 var MongoClient = require('mongodb').MongoClient;
 
-var mongoUrl = "mongodb://127.0.0.1:27017/testjobs";
+var mongoUrl = "mongodb://127.0.0.1:27017/quadrant";
 
 /* POST file */
 router.post('/', function (req, res, next) {
@@ -39,7 +39,7 @@ router.post('/', function (req, res, next) {
 
 saveJobs = (jobs) => {
   MongoClient.connect(mongoUrl, (err, client)=> {
-    var db = client.db("testjobs");
+    var db = client.db("quadrant");
     console.log("connected to the db");
     
     db.collection('jobs').insertMany(jobs, (err, result)=> {
